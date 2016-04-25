@@ -1,16 +1,3 @@
 mysql> DROP DATABASE decodemtl_test;
     
 Query OK, 0 rows affected (0.01 sec)
-
-mysql> show databases;
-+-----------------------+
-| Database              |
-+-----------------------+
-| information_schema    |
-| c9                    |
-| decodemtl_addressbook |
-| mysql                 |
-| performance_schema    |
-| phpmyadmin            |
-+-----------------------+
-6 rows in set (0.00 sec)
