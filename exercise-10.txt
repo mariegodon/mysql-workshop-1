@@ -1,0 +1,17 @@
+mysql> CREATE DATABASE Hotel;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> USE Hotel;
+Database changed
+
+mysql> CREATE TABLE floors (id INT AUTO_INCREMENT PRIMARY KEY, number VARCHAR(2), rentableRooms INT, unrentableRooms INT, windows INT);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE rooms (id INT AUTO_INCREMENT PRIMARY KEY, floorId INT, number INT, maxOccupancy INT, privateKitchen BOOLEAN, carpet BOOLEAN);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE dates (id INT AUTO_INCREMENT PRIMARY KEY, date DATETIME);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE vacancy (roomId INT, dateId INT, vacant BOOLEAN);                                                                      
+Query OK, 0 rows affected (0.01 sec)

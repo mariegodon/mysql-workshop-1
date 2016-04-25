@@ -1,0 +1,14 @@
+mysql> CREATE TABLE chickens (id INT AUTO_INCREMENT PRIMARY KEY, gender VARCHAR(6), dateHatched DATETIME, dateMature DATETIME, dateLeftBarn DATETIME);
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> describe chickens;
++--------------+------------+------+-----+---------+----------------+
+| Field        | Type       | Null | Key | Default | Extra          |
++--------------+------------+------+-----+---------+----------------+
+| id           | int(11)    | NO   | PRI | NULL    | auto_increment |
+| gender       | varchar(6) | YES  |     | NULL    |                |
+| dateHatched  | datetime   | YES  |     | NULL    |                |
+| dateMature   | datetime   | YES  |     | NULL    |                |
+| dateLeftBarn | datetime   | YES  |     | NULL    |                |
++--------------+------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
