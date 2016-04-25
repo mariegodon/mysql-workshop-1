@@ -6,8 +6,16 @@ mysql> ALTER TABLE AddressBook ADD COLUMN (name VARCHAR(255), createdOn DATETIME
 Query OK, 0 rows affected (0.08 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
+mysql> ALTER TABLE AddressBook ADD (accountId INT, FOREIGN KEY (accountId) REFERENCES Account(id));
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
 mysql> ALTER TABLE Entry ADD COLUMN (addresBookId INT, firstName VARCHAR(255), lastName VARCHAR(255), birthday DATETIME, type ENUM('home', 'work', 'other'), subtype ENUM('phone', 'address', 'email'), contentLineOne VARCHAR(255), contentLineTwo VARCHAR(255), contentLineThree VARCHAR(255), contentLineFour VARCHAR(255), contentLineFive VARCHAR(255));
 Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Entry ADD FOREIGN KEY (addresBookId) REFERENCES AddressBook(id);                                                        
+Query OK, 0 rows affected (0.18 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
 mysql> DESCRIBE Account;
@@ -30,15 +38,16 @@ mysql> DESCRIBE AddressBook;
 | name       | varchar(255) | YES  |     | NULL    |                |
 | createdOn  | datetime     | YES  |     | NULL    |                |
 | modifiedOn | datetime     | YES  |     | NULL    |                |
+| accountId  | int(11)      | YES  | MUL | NULL    |                |
 +------------+--------------+------+-----+---------+----------------+
-4 rows in set (0.00 sec)
+5 rows in set (0.01 sec)
 
 mysql> DESCRIBE Entry;
 +------------------+---------------------------------+------+-----+---------+----------------+
 | Field            | Type                            | Null | Key | Default | Extra          |
 +------------------+---------------------------------+------+-----+---------+----------------+
 | id               | int(11)                         | NO   | PRI | NULL    | auto_increment |
-| addresBookId     | int(11)                         | YES  |     | NULL    |                |
+| addresBookId     | int(11)                         | YES  | MUL | NULL    |                |
 | firstName        | varchar(255)                    | YES  |     | NULL    |                |
 | lastName         | varchar(255)                    | YES  |     | NULL    |                |
 | birthday         | datetime                        | YES  |     | NULL    |                |
