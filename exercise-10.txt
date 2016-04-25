@@ -7,11 +7,47 @@ Database changed
 mysql> CREATE TABLE floors (id INT AUTO_INCREMENT PRIMARY KEY, number VARCHAR(2), rentableRooms INT, unrentableRooms INT, windows INT);
 Query OK, 0 rows affected (0.01 sec)
 
+mysql> DESCRIBE floors;
++-----------------+------------+------+-----+---------+----------------+
+| Field           | Type       | Null | Key | Default | Extra          |
++-----------------+------------+------+-----+---------+----------------+
+| id              | int(11)    | NO   | PRI | NULL    | auto_increment |
+| number          | varchar(2) | YES  |     | NULL    |                |
+| rentableRooms   | int(11)    | YES  |     | NULL    |                |
+| unrentableRooms | int(11)    | YES  |     | NULL    |                |
+| windows         | int(11)    | YES  |     | NULL    |                |
++-----------------+------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
 mysql> CREATE TABLE rooms (id INT AUTO_INCREMENT PRIMARY KEY, floorId INT, number INT, maxOccupancy INT, privateKitchen BOOLEAN, carpet BOOLEAN);
 Query OK, 0 rows affected (0.01 sec)
 
-mysql> CREATE TABLE dates (id INT AUTO_INCREMENT PRIMARY KEY, date DATETIME);
-Query OK, 0 rows affected (0.03 sec)
+mysql> ALTER TABLE rooms ADD  FOREIGN KEY (floorId) REFERENCES floors(id);                                                                  
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> CREATE TABLE vacancy (roomId INT, dateId INT, vacant BOOLEAN);                                                                      
-Query OK, 0 rows affected (0.01 sec)
+mysql> DESCRIBE rooms;
++----------------+------------+------+-----+---------+----------------+
+| Field          | Type       | Null | Key | Default | Extra          |
++----------------+------------+------+-----+---------+----------------+
+| id             | int(11)    | NO   | PRI | NULL    | auto_increment |
+| floorId        | int(11)    | YES  | MUL | NULL    |                |
+| number         | int(11)    | YES  |     | NULL    |                |
+| maxOccupancy   | int(11)    | YES  |     | NULL    |                |
+| privateKitchen | tinyint(1) | YES  |     | NULL    |                |
+| carpet         | tinyint(1) | YES  |     | NULL    |                |
++----------------+------------+------+-----+---------+----------------+
+6 rows in set (0.01 sec)
+
+mysql> CREATE TABLE booking_dates (roomId INT, FOREIGN KEY (roomId)  REFERENCES rooms(id), booked_from DATETIME, booked_to DATETIME);       
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DESCRIBE booking_dates;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| roomId      | int(11)  | YES  | MUL | NULL    |       |
+| booked_from | datetime | YES  |     | NULL    |       |
+| booked_to   | datetime | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
