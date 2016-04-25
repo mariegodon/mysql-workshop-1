@@ -12,3 +12,19 @@ mysql> describe chickens;
 | dateLeftBarn | datetime   | YES  |     | NULL    |                |
 +--------------+------------+------+-----+---------+----------------+
 5 rows in set (0.00 sec)
+
+mysql> ALTER TABLE chickens CHANGE gender gender  ENUM('male', 'female');                                                                   
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE chickens;
++--------------+-----------------------+------+-----+---------+----------------+
+| Field        | Type                  | Null | Key | Default | Extra          |
++--------------+-----------------------+------+-----+---------+----------------+
+| id           | int(11)               | NO   | PRI | NULL    | auto_increment |
+| gender       | enum('male','female') | YES  |     | NULL    |                |
+| dateHatched  | datetime              | YES  |     | NULL    |                |
+| dateMature   | datetime              | YES  |     | NULL    |                |
+| dateLeftBarn | datetime              | YES  |     | NULL    |                |
++--------------+-----------------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
